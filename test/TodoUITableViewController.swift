@@ -84,11 +84,8 @@ class TodoUITableViewController: UITableViewController {
     }
 
     func loadSavedTodos() {
-        let todos = UserDefaults.standard.object(forKey: "Todos") as! [[String]]
-        if todos.count == 0 {
-            loadsampleTodoLists()
-        }
-        else {
+        if UserDefaults.standard.object(forKey: "Todos") != nil {
+            let todos = UserDefaults.standard.object(forKey: "Todos") as! [[String]]
             for t in todos {
                 if pass24(from: Double(t[2])!, to: Date().timeIntervalSince1970) && t[3] == "true" {
                 }
@@ -97,6 +94,7 @@ class TodoUITableViewController: UITableViewController {
                 }
             }
         }
+        saveTodos()
     }
 
 
